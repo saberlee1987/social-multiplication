@@ -15,6 +15,12 @@
         <maven.compiler.source>11</maven.compiler.source>
     </properties>
 
+
+    <modules>
+        <module>social-multiplication-service</module>
+    </modules>
+
+
     <build>
 
         <plugins>
