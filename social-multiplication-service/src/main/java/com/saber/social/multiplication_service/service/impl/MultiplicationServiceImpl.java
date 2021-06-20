@@ -29,6 +29,7 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 	
 	@Override
 	public boolean checkAttempt(MultiplicationResultAttempt resultAttempt) {
+		log.info("checkAttempt Request ===> {}",resultAttempt);
 		Multiplication multiplication = resultAttempt.getMultiplication();
 		if (multiplication == null)
 			return false;
