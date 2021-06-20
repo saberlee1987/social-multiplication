@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Multiplication implements Serializable {
 	private Integer factorA;
 	private Integer factorB;
-	private Integer result;
+	//private Integer result;
 	
 	public Multiplication() {
 	}
@@ -16,6 +16,6 @@ public class Multiplication implements Serializable {
 	public Multiplication(Integer factorA, Integer factorB) {
 		this.factorA = factorA;
 		this.factorB = factorB;
-		this.result=factorA*factorB;
+		//this.result=factorA*factorB;
 	}
 }

@@ -22,11 +22,11 @@ public class MultiplicationServiceTest {
 	public void createRandomMultiplicationTest(){
 		Mockito.when(randomGenerationService.generateRandomFactor())
 				.thenReturn(50,30);
-		
 		Multiplication multiplication = multiplicationService.createRandomMultiplication();
 		
+		int result= multiplication.getFactorA() * multiplication.getFactorB();
 		Assertions.assertEquals(multiplication.getFactorA(),50);
 		Assertions.assertEquals(multiplication.getFactorB(),30);
-		Assertions.assertEquals(multiplication.getResult(),1500);
+		Assertions.assertEquals(result,1500);
 	}
 }

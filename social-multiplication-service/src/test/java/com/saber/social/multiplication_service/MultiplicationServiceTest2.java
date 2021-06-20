@@ -32,10 +32,10 @@ public class MultiplicationServiceTest2 {
 				.thenReturn(50,30);
 		
 		Multiplication multiplication =multiplicationService.createRandomMultiplication();
-		
+		int result= multiplication.getFactorA() * multiplication.getFactorB();
 		Assertions.assertThat(multiplication.getFactorA()).isEqualTo(50);
 		Assertions.assertThat(multiplication.getFactorB()).isEqualTo(30);
-		Assertions.assertThat(multiplication.getResult()).isEqualTo(1500);
+		Assertions.assertThat(result).isEqualTo(1500);
 	
 	
 	}
