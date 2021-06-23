@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiplication Game Page</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.0.1/css/bootstrap.css">
+    <script src="/webjars/jquery/3.5.1/jquery.js"></script>
+    <script src="/webjars/bootstrap/5.0.1/js/bootstrap.js"></script>
+    <script src="/js/multiplication-client.js"></script>
+</head>
+<body>
+<div>
+    <h3>Welcome To Social Multiplication </h3>
+    <h4>This is your Challenge for today</h4>
+</div>
+<div class="container">
+    <form id="multiplication-form">
+
+        <div class="row">
+            <div class="col">
+                <span class="factorA"></span>
+                <span> x </span>
+                <span class="factorB"></span>
+                <span> = </span>
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-sm-4">
+                <input type="text" placeholder="Result" id="result" class="result form-control"/>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" id="userAlias" placeholder="user alias" class="userAlias form-control">
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-auto">
+                <input type="submit" class="btn btn-primary mb-3" value="Submit">
+            </div>
+            <div class="col-auto">
+                <input type="button" value="Refresh" class=" btn btn-primary refresh">
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="result-multiplication"></div>
+    </div>
+</div>
+
+</body>
+</html>

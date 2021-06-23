@@ -18,6 +18,7 @@
 
     <modules>
         <module>social-multiplication-service</module>
+        <module>social-web-front</module>
     </modules>
 
 
