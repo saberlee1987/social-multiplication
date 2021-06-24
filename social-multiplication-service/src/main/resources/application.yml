@@ -1,2 +1,30 @@
 server:
   port: 8001
+
+
+
+management:
+  endpoints:
+    web:
+     base-path: /actuator/multiplication
+     exposure:
+        include: "*"
+    jmx:
+      exposure:
+        include: "*"
+
+
+
+
+
+
+#spring:
+#  application:
+#    name: multiplication-service
+#  cloud:
+#    consul:
+#      discovery:
+#        health-check-path: /actuator/health
+#        instance-id: ${spring.application.name}:${server.port}
+#      host: consul
+#      port: 8500

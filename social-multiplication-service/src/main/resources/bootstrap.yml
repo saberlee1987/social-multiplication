@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: multiplication-service
+  cloud:
+    consul:
+      discovery:
+        health-check-path: /actuator/multiplication/health
+        instance-id: ${spring.application.name}:${server.port}
+      host: consul
+      port: 8500
