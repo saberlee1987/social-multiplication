@@ -21,7 +21,7 @@ $(document).ready(function () {
             resultAttempt :result
         };
         $.ajax({
-            url: 'http://localhost:8001/results',
+            url: 'http://localhost:8760/results',
             type: 'POST',
             data: JSON.stringify(data),
             contentType : 'application/json',
@@ -49,7 +49,9 @@ class data {
 function updateMultiplications() {
     console.log("get Data from multiplications");
     $.ajax(
-        {url: "http://localhost:8001/multiplications/random"}
+        {
+            url: "http://localhost:8760/multiplications/random"
+        }
     ).then(function (data) {
         var content = JSON.stringify(data);
         console.log("data === " + content);

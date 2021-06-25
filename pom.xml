@@ -19,6 +19,7 @@
     <modules>
         <module>social-multiplication-service</module>
         <module>social-web-front</module>
+        <module>api-gateway</module>
     </modules>
 
 

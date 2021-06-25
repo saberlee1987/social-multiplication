@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: agi-gateway
+  cloud:
+    consul:
+      discovery:
+        health-check-path: /actuator/agi-gateway/health
+        instance-id: ${spring.application.name}:${server.port}
+      host: consul
+      port: 8500

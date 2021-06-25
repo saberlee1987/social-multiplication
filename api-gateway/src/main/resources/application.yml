@@ -1,0 +1,63 @@
+server:
+  port: 8760
+
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: multiplication-service
+          uri: lb://multiplication-service
+          predicates:
+            - Method= GET , POST
+            - Path=/multiplications/**
+        - id: multiplication-results-service
+          uri: lb://multiplication-service
+          predicates:
+            - Method= GET,POST
+            - Path=/results/**
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+#          url-expression: "''+serviceId"
+          include-expression: false
+      loadbalancer:
+        use404: true
+      filter:
+        secure-headers:
+          permitted-cross-domain-policies: "none"
+      globalcors:
+        cors-configurations:
+              "[/**]":
+                  allowedOrigins: "*"
+                  allowedMethods: "*"
+                  allowedHeaders: "*"
+        add-to-simple-url-handler-mapping: true
+
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator/agi-gateway
+      exposure:
+        include: "*"
+    jmx:
+      exposure:
+        include: "*"
+
+
+
+
+
+
+#spring:
+#  application:
+#    name: multiplication-service
+#  cloud:
+#    consul:
+#      discovery:
+#        health-check-path: /actuator/health
+#        instance-id: ${spring.application.name}:${server.port}
+#      host: consul
+#      port: 8500
