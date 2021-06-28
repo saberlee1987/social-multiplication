@@ -1,6 +1,8 @@
 package com.saber.social.multiplication_service;
 
 import com.saber.social.multiplication_service.dto.Multiplication;
+import com.saber.social.multiplication_service.repositories.MultiplicationResultAttemptRepository;
+import com.saber.social.multiplication_service.repositories.UserRepository;
 import com.saber.social.multiplication_service.service.MultiplicationService;
 import com.saber.social.multiplication_service.service.RandomGenerationService;
 import com.saber.social.multiplication_service.service.impl.MultiplicationServiceImpl;
@@ -17,13 +19,19 @@ public class MultiplicationServiceTest2 {
 	
 	@Mock
 	private RandomGenerationService randomGenerationService;
+
+	@Mock
+	private MultiplicationResultAttemptRepository resultAttemptRepository;
+
+	@Mock
+	private UserRepository userRepository;
 	
 	@BeforeEach
 	void setup(){
 		
 		MockitoAnnotations.openMocks(this);
 	this.multiplicationService=
-			new MultiplicationServiceImpl(randomGenerationService);
+			new MultiplicationServiceImpl(randomGenerationService, resultAttemptRepository, userRepository);
 	}
 	
 	@Test
