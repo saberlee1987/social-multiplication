@@ -35,6 +35,9 @@ $(document).ready(function () {
         });
 
         updateMultiplications();
+        for (i=1;i<=1000;i++){
+            console.log("i == "+i)
+        }
         updateStats(userAlias);
     });
 
@@ -50,6 +53,8 @@ class data {
 }
 
 function updateMultiplications() {
+    $(".result").val("");
+    $(".userAlias").val("");
     console.log("get Data from multiplications");
     $.ajax(
         {
