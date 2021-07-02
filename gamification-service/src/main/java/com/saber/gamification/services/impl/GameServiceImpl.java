@@ -1,16 +1,14 @@
 package com.saber.gamification.services.impl;
 
-import com.saber.gamification.dto.Badge;
-import com.saber.gamification.dto.BadgeCard;
-import com.saber.gamification.dto.GameStats;
-import com.saber.gamification.dto.ScoreCard;
+import com.saber.gamification.client.MultiplicationResultAttemptClient;
+import com.saber.gamification.dto.*;
 import com.saber.gamification.repositores.BadgeCardRepository;
 import com.saber.gamification.repositores.ScoreCardRepository;
 import com.saber.gamification.services.GameService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,9 +20,12 @@ public class GameServiceImpl implements GameService {
     private ScoreCardRepository scoreCardRepository;
     private BadgeCardRepository badgeCardRepository;
 
-    public GameServiceImpl(ScoreCardRepository scoreCardRepository, BadgeCardRepository badgeCardRepository) {
+    private MultiplicationResultAttemptClient multiplicationResultAttemptClient;
+
+    public GameServiceImpl(ScoreCardRepository scoreCardRepository, BadgeCardRepository badgeCardRepository, MultiplicationResultAttemptClient multiplicationResultAttemptClient) {
         this.scoreCardRepository = scoreCardRepository;
         this.badgeCardRepository = badgeCardRepository;
+        this.multiplicationResultAttemptClient = multiplicationResultAttemptClient;
     }
 
     @Override
@@ -39,7 +40,7 @@ public class GameServiceImpl implements GameService {
             processForBadges(userId, attemptId);
         }
 
-    }
+     }
 
     private void processForBadges(Long userId, Long attemptId) {
 
@@ -55,6 +56,12 @@ public class GameServiceImpl implements GameService {
         checkAndGiveBadgeCardOnScore(badgeCardList, Badge.SILVER_MULTIPLICATOR, totalScore, 500, userId);
 
         checkAndGiveBadgeCardOnScore(badgeCardList, Badge.GOLD_MULTIPLICATOR, totalScore, 1000, userId);
+
+        ResponseEntity<MultiplicationResultAttempt> resultAttemptResponseEntity = this.multiplicationResultAttemptClient.findById(attemptId);
+
+        MultiplicationResultAttempt resultAttempt =resultAttemptResponseEntity.getBody();
+
+        log.info("MultiplicationResultAttempt with attemptId {} is {}",attemptId,resultAttempt);
 
         if (scoreCards.size() == 1 && !containsBadge(badgeCardList, Badge.FIRST_WON)) {
             persistBadgeCard(Badge.FIRST_WON, userId);

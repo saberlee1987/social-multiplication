@@ -31,7 +31,6 @@ spring:
       anything:
         routhing-key: multiplication.*
 
-
 management:
   endpoints:
     web:
@@ -44,6 +43,13 @@ management:
 
 
 
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 8000
+        readTimeout: 8000
+        loggerLevel: full
 
 
 

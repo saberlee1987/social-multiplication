@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/stats")
-public class GameStatsController {
+public class UsersStatsController {
 
     private GameService gameService;
 
-    public GameStatsController(GameService gameService) {
+    public UsersStatsController(GameService gameService) {
         this.gameService = gameService;
     }
 

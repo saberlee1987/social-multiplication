@@ -50,4 +50,11 @@ public class MultiplicationResultAttemptController {
         return ResponseEntity.ok(statsAttemptUserDto);
     }
 
+    @GetMapping(value = "/{resultAttemptId}")
+    public ResponseEntity<MultiplicationResultAttempt> findById(@PathVariable(value = "resultAttemptId") Long resultAttemptId) {
+        MultiplicationResultAttempt resultAttempt = this.multiplicationService.findById(resultAttemptId);
+        return ResponseEntity.ok(resultAttempt);
+    }
+
+
 }

@@ -97,4 +97,10 @@ public class MultiplicationServiceImpl implements MultiplicationService {
     public List<MultiplicationResultAttempt> getStatsForUser(String alias) {
         return this.resultAttemptRepository.findTop5ByUserAliasOrderByIdDesc(alias);
     }
+
+    @Override
+    @Transactional
+    public MultiplicationResultAttempt findById(Long id) {
+        return this.resultAttemptRepository.findById(id).orElse(null);
+    }
 }
