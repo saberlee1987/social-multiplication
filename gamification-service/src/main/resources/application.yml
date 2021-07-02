@@ -25,8 +25,12 @@ spring:
   rabbitmq:
     multiplication:
       exchange: multiplication_exchange
+      queue: gamification_multiplication_queue
       solved:
         key: multiplication.solved
+      anything:
+        routhing-key: multiplication.*
+
 
 management:
   endpoints:

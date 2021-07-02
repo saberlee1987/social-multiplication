@@ -19,14 +19,19 @@ public class ScoreCard {
     private Integer score;
 
     public ScoreCard() {
-        this(null, null, null, 0L, 0);
+        this( null, null, 0L, 0);
     }
 
-    public ScoreCard(Long cardId, Long userId, Long attemptId, Long scoreTimeStamp, Integer score) {
-        this.cardId = cardId;
+    public ScoreCard( Long userId, Long attemptId, Long scoreTimeStamp, Integer score) {
         this.userId = userId;
         this.attemptId = attemptId;
         this.scoreTimeStamp = System.currentTimeMillis();
         this.score = score;
+    }
+    public ScoreCard(Long userId, Long attemptId) {
+        this.userId = userId;
+        this.attemptId = attemptId;
+        this.scoreTimeStamp = System.currentTimeMillis();
+        this.score = 0;
     }
 }
