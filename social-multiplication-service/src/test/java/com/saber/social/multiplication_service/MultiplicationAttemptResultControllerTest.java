@@ -82,10 +82,10 @@ public class MultiplicationAttemptResultControllerTest {
 
 
         MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.post("/results")
-        .accept(MediaType.APPLICATION_JSON_VALUE)
-        .contentType(MediaType.APPLICATION_JSON_VALUE)
-        .content(jsonResultAttemptJacksonTester.
-                write(multiplicationResultAttempt).getJson()))
+                .accept(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(jsonResultAttemptJacksonTester.
+                        write(multiplicationResultAttempt).getJson()))
                 .andReturn().getResponse();
 
         Assertions.assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
@@ -97,7 +97,7 @@ public class MultiplicationAttemptResultControllerTest {
     @Test
     public void getStats() throws Exception {
 
-        User user= new User();
+        User user = new User();
         user.setAlias("saber");
 
         Multiplication multiplication = new Multiplication();
@@ -117,16 +117,16 @@ public class MultiplicationAttemptResultControllerTest {
                 .resultAttempt(3520)
                 .build();
 
-        List<MultiplicationResultAttempt> resultAttempts = Lists.list(attempt1,attempt2);
+        List<MultiplicationResultAttempt> resultAttempts = Lists.list(attempt1, attempt2);
 
-        StatsAttemptUserDto statsAttemptUserDto= new StatsAttemptUserDto();
+        StatsAttemptUserDto statsAttemptUserDto = new StatsAttemptUserDto();
         statsAttemptUserDto.setResultAttempts(resultAttempts);
 
         Mockito.when(multiplicationService.getStatsForUser("saber"))
                 .thenReturn(resultAttempts);
 
         MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.
-                get("/results").param("alias","saber"))
+                get("/results").param("alias", "saber"))
                 .andReturn().getResponse();
 
 

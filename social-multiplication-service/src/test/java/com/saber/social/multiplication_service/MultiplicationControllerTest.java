@@ -43,7 +43,7 @@ public class MultiplicationControllerTest {
         Mockito.when(multiplicationService.createRandomMultiplication())
                 .thenReturn(multiplication);
 
-      MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.get("/multiplications/random")
+        MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.get("/multiplications/random")
                 .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andReturn().getResponse();
 
@@ -51,6 +51,6 @@ public class MultiplicationControllerTest {
 
         Assertions.assertThat(response.getContentAsString())
                 .isEqualTo(json.write(multiplication).getJson());
-                
+
     }
 }

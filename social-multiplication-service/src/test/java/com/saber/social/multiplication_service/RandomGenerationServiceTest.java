@@ -15,25 +15,25 @@ import java.util.stream.IntStream;
 
 //@SpringBootTest
 public class RandomGenerationServiceTest {
-	
-//	@Autowired
-	private RandomGenerationService randomGenerationService;
-	
-	@BeforeEach
-	public void beforeTest(){
-		randomGenerationService = new RandomGenerationServiceImpl();
-	}
-	
-	@Test
-	void generationRandomFactorIsBetweenExpectedLimits(){
-		
-		List<Integer> randomFactors = IntStream.range(0,1000).
-				map(i->randomGenerationService.generateRandomFactor()).boxed()
-				.collect(Collectors.toList());
-		
-		Assertions.assertThat(randomFactors).
-				containsAnyElementsOf(IntStream.range(11,100)
-						.boxed().collect(Collectors.toList())
-				);
-	}
+
+    //	@Autowired
+    private RandomGenerationService randomGenerationService;
+
+    @BeforeEach
+    public void beforeTest() {
+        randomGenerationService = new RandomGenerationServiceImpl();
+    }
+
+    @Test
+    void generationRandomFactorIsBetweenExpectedLimits() {
+
+        List<Integer> randomFactors = IntStream.range(0, 1000).
+                map(i -> randomGenerationService.generateRandomFactor()).boxed()
+                .collect(Collectors.toList());
+
+        Assertions.assertThat(randomFactors).
+                containsAnyElementsOf(IntStream.range(11, 100)
+                        .boxed().collect(Collectors.toList())
+                );
+    }
 }

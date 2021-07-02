@@ -21,12 +21,12 @@ public class MultiplicationController {
         this.multiplicationService = multiplicationService;
     }
 
-    @GetMapping(value = "/random",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Multiplication> createRandomMultiplication(){
+    @GetMapping(value = "/random", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Multiplication> createRandomMultiplication() {
 
-        Multiplication multiplication =this.multiplicationService.createRandomMultiplication();
+        Multiplication multiplication = this.multiplicationService.createRandomMultiplication();
 
-        log.info("Response createRandomMultiplication ===> {}",multiplication);
+        log.info("Response createRandomMultiplication ===> {}", multiplication);
 
         return ResponseEntity.ok(multiplication);
     }

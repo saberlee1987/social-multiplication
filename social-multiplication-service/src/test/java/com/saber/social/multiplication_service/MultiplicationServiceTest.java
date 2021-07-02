@@ -13,20 +13,20 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 @SpringBootTest
 public class MultiplicationServiceTest {
-	@MockBean
-	private RandomGenerationService randomGenerationService;
-	@Autowired
-	private MultiplicationService multiplicationService;
-	
-	@Test
-	public void createRandomMultiplicationTest(){
-		Mockito.when(randomGenerationService.generateRandomFactor())
-				.thenReturn(50,30);
-		Multiplication multiplication = multiplicationService.createRandomMultiplication();
-		
-		int result= multiplication.getFactorA() * multiplication.getFactorB();
-		Assertions.assertEquals(multiplication.getFactorA(),50);
-		Assertions.assertEquals(multiplication.getFactorB(),30);
-		Assertions.assertEquals(result,1500);
-	}
+    @MockBean
+    private RandomGenerationService randomGenerationService;
+    @Autowired
+    private MultiplicationService multiplicationService;
+
+    @Test
+    public void createRandomMultiplicationTest() {
+        Mockito.when(randomGenerationService.generateRandomFactor())
+                .thenReturn(50, 30);
+        Multiplication multiplication = multiplicationService.createRandomMultiplication();
+
+        int result = multiplication.getFactorA() * multiplication.getFactorB();
+        Assertions.assertEquals(multiplication.getFactorA(), 50);
+        Assertions.assertEquals(multiplication.getFactorB(), 30);
+        Assertions.assertEquals(result, 1500);
+    }
 }

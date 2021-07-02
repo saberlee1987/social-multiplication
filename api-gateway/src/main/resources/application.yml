@@ -20,7 +20,7 @@ spring:
         locator:
           lower-case-service-id: true
           enabled: true
-#          url-expression: "''+serviceId"
+          #          url-expression: "''+serviceId"
           include-expression: false
       loadbalancer:
         use404: true
@@ -29,10 +29,10 @@ spring:
           permitted-cross-domain-policies: "none"
       globalcors:
         cors-configurations:
-              "[/**]":
-                  allowedOrigins: "*"
-                  allowedMethods: "*"
-                  allowedHeaders: "*"
+          "[/**]":
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
         add-to-simple-url-handler-mapping: true
 
 

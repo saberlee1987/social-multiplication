@@ -21,14 +21,14 @@ public class MultiplicationResultAttemptController {
         this.multiplicationService = multiplicationService;
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<MultiplicationResultAttempt> postResult(@RequestBody MultiplicationResultAttempt multiplicationResultAttempt){
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<MultiplicationResultAttempt> postResult(@RequestBody MultiplicationResultAttempt multiplicationResultAttempt) {
 
-        log.info("Request for postResult ==> {}",multiplicationResultAttempt);
+        log.info("Request for postResult ==> {}", multiplicationResultAttempt);
 
-        boolean isCorrect =this.multiplicationService.checkAttempt(multiplicationResultAttempt);
+        boolean isCorrect = this.multiplicationService.checkAttempt(multiplicationResultAttempt);
 
-        log.info("Response postResult ===> {}",isCorrect);
+        log.info("Response postResult ===> {}", isCorrect);
 
         MultiplicationResultAttempt attemptCopy = MultiplicationResultAttempt.builder()
                 .multiplication(multiplicationResultAttempt.getMultiplication())
@@ -39,13 +39,14 @@ public class MultiplicationResultAttemptController {
 
         return ResponseEntity.ok(attemptCopy);
     }
+
     @GetMapping(value = "/stats")
-    public ResponseEntity<StatsAttemptUserDto> getStatistics(@RequestParam(name = "alias") String alias){
+    public ResponseEntity<StatsAttemptUserDto> getStatistics(@RequestParam(name = "alias") String alias) {
         List<MultiplicationResultAttempt> resultAttempts = this.multiplicationService.getStatsForUser(alias);
         StatsAttemptUserDto statsAttemptUserDto = new StatsAttemptUserDto();
         statsAttemptUserDto.setResultAttempts(resultAttempts);
 
-        log.info("getStatistics for user {} ===> {}",alias,statsAttemptUserDto);
+        log.info("getStatistics for user {} ===> {}", alias, statsAttemptUserDto);
         return ResponseEntity.ok(statsAttemptUserDto);
     }
 

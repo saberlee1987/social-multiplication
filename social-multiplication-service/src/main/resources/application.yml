@@ -22,11 +22,17 @@ spring:
         show_sql: true
         format_sql: true
 
+  rabbitmq:
+    multiplication:
+      exchange: multiplication_exchange
+      solved:
+        key: multiplication.solved
+
 management:
   endpoints:
     web:
-     base-path: /actuator/multiplication
-     exposure:
+      base-path: /actuator/multiplication
+      exposure:
         include: "*"
     jmx:
       exposure:

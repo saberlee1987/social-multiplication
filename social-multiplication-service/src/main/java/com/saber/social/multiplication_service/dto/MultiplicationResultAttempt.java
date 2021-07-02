@@ -14,18 +14,18 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MultiplicationResultAttempt {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,
-			CascadeType.DETACH,CascadeType.REFRESH})
-	@JoinColumn(name = "user_id")
-	private User user;
-	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,
-			CascadeType.DETACH,CascadeType.REFRESH})
-	@JoinColumn(name = "multiplication_id")
-	private Multiplication multiplication;
-	private Integer resultAttempt;
-	private boolean correct;
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name = "user_id")
+    private User user;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name = "multiplication_id")
+    private Multiplication multiplication;
+    private Integer resultAttempt;
+    private boolean correct;
+
 }
