@@ -21,6 +21,7 @@
         <module>social-web-front</module>
         <module>api-gateway</module>
         <module>model</module>
+        <module>gamification-service</module>
     </modules>
 
 

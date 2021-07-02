@@ -1,0 +1,55 @@
+server:
+  port: 8002
+
+
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:/gamification;DB_CLOSE_ON_EXIT=FALSE;
+    username: sa
+    password: sa
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+  rabbitmq:
+    multiplication:
+      exchange: multiplication_exchange
+      solved:
+        key: multiplication.solved
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator/gamification
+      exposure:
+        include: "*"
+    jmx:
+      exposure:
+        include: "*"
+
+
+
+
+
+
+#spring:
+#  application:
+#    name: multiplication-service
+#  cloud:
+#    consul:
+#      discovery:
+#        health-check-path: /actuator/health
+#        instance-id: ${spring.application.name}:${server.port}
+#      host: consul
+#      port: 8500
