@@ -41,7 +41,10 @@
             <div class="col-auto">
                 <input type="button" value="Refresh" class=" btn btn-primary refresh">
             </div>
-        </div>
+            <div class="col-auto">
+                <input type="button" value="Refresh Leaders" class=" btn btn-primary refreshLeaders">
+            </div>
+         </div>
     </form>
 
     <div class="row">
@@ -61,6 +64,38 @@
             </tr>
             </thead>
             <tbody id="stats-body"></tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <h3>LeaderBoard Table</h3>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>userId</th>
+                <th>totalScore</th>
+            </tr>
+            </thead>
+            <tbody id="leaders-body"></tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container" id="stats-div" style="display: none">
+    <h2>your statistics</h2>
+    <div class="row">
+        <table id="stats" class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>userId</th>
+                <th>score</th>
+                <th>badges</th>
+            </tr>
+            </thead>
+            <tbody class="stats-body"></tbody>
         </table>
     </div>
 </div>

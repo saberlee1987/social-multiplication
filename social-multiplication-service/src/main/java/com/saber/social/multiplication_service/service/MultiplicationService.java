@@ -9,7 +9,7 @@ public interface MultiplicationService {
 
     Multiplication createRandomMultiplication();
 
-    boolean checkAttempt(MultiplicationResultAttempt resultAttempt);
+    MultiplicationResultAttempt checkAttempt(MultiplicationResultAttempt resultAttempt);
 
     List<MultiplicationResultAttempt> getStatsForUser(String alias);
 

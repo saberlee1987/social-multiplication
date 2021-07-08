@@ -26,18 +26,12 @@ public class MultiplicationResultAttemptController {
 
         log.info("Request for postResult ==> {}", multiplicationResultAttempt);
 
-        boolean isCorrect = this.multiplicationService.checkAttempt(multiplicationResultAttempt);
+        MultiplicationResultAttempt responseResultAttempt = this.multiplicationService.checkAttempt(multiplicationResultAttempt);
 
-        log.info("Response postResult ===> {}", isCorrect);
+        log.info("Response postResult isCorrect ===> {}", responseResultAttempt.isCorrect());
+        log.info("Response postResult ===> {}", responseResultAttempt);
 
-        MultiplicationResultAttempt attemptCopy = MultiplicationResultAttempt.builder()
-                .multiplication(multiplicationResultAttempt.getMultiplication())
-                .user(multiplicationResultAttempt.getUser())
-                .resultAttempt(multiplicationResultAttempt.getResultAttempt())
-                .correct(isCorrect)
-                .build();
-
-        return ResponseEntity.ok(attemptCopy);
+        return ResponseEntity.ok(responseResultAttempt);
     }
 
     @GetMapping(value = "/stats")

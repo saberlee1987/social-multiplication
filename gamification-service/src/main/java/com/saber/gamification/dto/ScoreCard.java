@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Data
 public class ScoreCard {
 
+    private static final Integer DEFAULT_SCORE = 10;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "card_id")
@@ -19,10 +20,10 @@ public class ScoreCard {
     private Integer score;
 
     public ScoreCard() {
-        this( null, null, 0L, 0);
+        this( null, null, 0);
     }
 
-    public ScoreCard( Long userId, Long attemptId, Long scoreTimeStamp, Integer score) {
+    public ScoreCard( Long userId, Long attemptId, Integer score) {
         this.userId = userId;
         this.attemptId = attemptId;
         this.scoreTimeStamp = System.currentTimeMillis();
@@ -32,6 +33,6 @@ public class ScoreCard {
         this.userId = userId;
         this.attemptId = attemptId;
         this.scoreTimeStamp = System.currentTimeMillis();
-        this.score = 0;
+        this.score = DEFAULT_SCORE;
     }
 }

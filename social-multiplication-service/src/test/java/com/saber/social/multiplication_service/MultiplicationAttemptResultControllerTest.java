@@ -51,10 +51,6 @@ public class MultiplicationAttemptResultControllerTest {
 
     void generateParameterizedTest(boolean correct) throws Exception {
 
-        Mockito.when(multiplicationService.checkAttempt(
-                Mockito.any(MultiplicationResultAttempt.class)))
-                .thenReturn(correct);
-
         User user = new User();
         user.setAlias("saber");
 
@@ -62,12 +58,22 @@ public class MultiplicationAttemptResultControllerTest {
         multiplication.setFactorB(50);
         multiplication.setFactorA(70);
 
+
         MultiplicationResultAttempt multiplicationResultAttempt = MultiplicationResultAttempt.builder()
                 .multiplication(multiplication)
                 .user(user)
                 .resultAttempt(3500)
                 .correct(correct)
                 .build();
+
+
+        Mockito.when(multiplicationService.checkAttempt(
+                Mockito.any(MultiplicationResultAttempt.class)))
+                .thenReturn(multiplicationResultAttempt);
+
+
+
+
 
         ResultResponse resultResponse = new ResultResponse();
         resultResponse.setCorrect(correct);

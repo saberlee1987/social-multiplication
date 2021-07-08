@@ -16,6 +16,16 @@ spring:
           predicates:
             - Method= GET,POST
             - Path=/results/**
+        - id: gamification-leaders
+          uri: lb://gamification-service
+          predicates:
+            - Method=GET,POST
+            - Path= /leaders/**
+        - id: gamification-stats
+          uri: lb://gamification-service
+          predicates:
+            - Method=GET,POST
+            - Path= /stats/**
       discovery:
         locator:
           lower-case-service-id: true

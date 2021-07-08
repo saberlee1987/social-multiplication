@@ -64,9 +64,9 @@ public class CheckCorrectAttemptTest {
 
         Mockito.when(userRepository.findByAlias("saber")).thenReturn(Optional.empty());
 
-        boolean attemptResult = multiplicationService.checkAttempt(resultAttempt);
+        verifiedAttempt= multiplicationService.checkAttempt(resultAttempt);
 
-        Assertions.assertThat(attemptResult).isTrue();
+        Assertions.assertThat(verifiedAttempt.isCorrect()).isTrue();
 
         Mockito.verify(resultAttemptRepository).save(verifiedAttempt);
 
@@ -95,9 +95,9 @@ public class CheckCorrectAttemptTest {
 
         Mockito.when(userRepository.findByAlias("saber")).thenReturn(Optional.empty());
 
-        boolean attemptResult = multiplicationService.checkAttempt(resultAttempt);
+        resultAttempt = multiplicationService.checkAttempt(resultAttempt);
 
-        Assertions.assertThat(attemptResult).isFalse();
+        Assertions.assertThat(resultAttempt.isCorrect()).isFalse();
 
         Mockito.verify(resultAttemptRepository).save(resultAttempt);
 

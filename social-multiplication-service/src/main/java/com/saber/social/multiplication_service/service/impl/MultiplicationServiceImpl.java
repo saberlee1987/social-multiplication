@@ -53,22 +53,25 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 
     @Override
     @Transactional
-    public boolean checkAttempt(MultiplicationResultAttempt resultAttempt) {
+    public MultiplicationResultAttempt checkAttempt(MultiplicationResultAttempt resultAttempt) {
         log.info("checkAttempt Request ===> {}", resultAttempt);
 
         Optional<User> user = this.userRepository.findByAlias(resultAttempt.getUser().getAlias());
 
 
-        User userAttempt = user.orElse(resultAttempt.getUser());
+        User userAttempt = user.orElse(null);
+        if (userAttempt == null){
+            userAttempt = resultAttempt.getUser();
+        }
 
         Multiplication multiplication = resultAttempt.getMultiplication();
         if (multiplication == null)
-            return false;
+            return null;
 
         Integer userResult = multiplication.getFactorA() * multiplication.getFactorB();
 
         if (resultAttempt.getResultAttempt() == null)
-            return false;
+            return null;
 
         boolean correct = resultAttempt.getResultAttempt().equals(userResult);
 
@@ -89,7 +92,7 @@ public class MultiplicationServiceImpl implements MultiplicationService {
         this.eventHandler.sendMultiplicationSolvedEvent(event);
 
         log.info("checkedAttempt ===> {}", checkedAttempt);
-        return resultAttempt.getResultAttempt().equals(userResult);
+        return checkedAttempt;
     }
 
     @Override

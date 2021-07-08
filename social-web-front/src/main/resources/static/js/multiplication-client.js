@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     updateMultiplications();
     $('#multiplication-form').submit(function (event) {
         event.preventDefault();
@@ -6,7 +7,6 @@ $(document).ready(function () {
         let factorB = $('.factorB').text();
         let result = $('.result').val();
         let userAlias = $('.userAlias').val();
-
         console.log('factorA === ' + factorA);
         console.log('factorB === ' + factorB);
         console.log('userAlias === ' + userAlias);
@@ -19,6 +19,7 @@ $(document).ready(function () {
             },
             resultAttempt: result
         };
+
         $.ajax({
             url: 'http://localhost:8760/results',
             type: 'POST',
@@ -26,31 +27,33 @@ $(document).ready(function () {
             contentType: 'application/json',
             dataType: 'json',
             success: function (result) {
+                console.log("result ==> " + JSON.stringify(result));
                 if (result.correct) {
                     $('.result-multiplication').empty().append('The result is Correct == ' + JSON.stringify(result))
                 } else {
                     $('.result-multiplication').empty().append('sorry your response does not correct == ' + JSON.stringify(result))
                 }
+                if (result.user.id != null)
+                    updateStatsUser(result.user.id)
             }
         });
-
         updateMultiplications();
-        for (i = 1; i <= 1000; i++) {
-            console.log("i == " + i)
+        for (i = 1; i <= 5000; i++) {
         }
         updateStats(userAlias);
+        updateLeaderBoard();
     });
 
 
     $('.refresh').click(function () {
         updateMultiplications();
-    })
-});
+    });
 
-class data {
-    factorA;
-    factorB;
-}
+    $('.refreshLeaders').click(function () {
+        updateLeaderBoard();
+    });
+
+});
 
 function updateMultiplications() {
     $(".result").val("");
@@ -96,6 +99,56 @@ function updateStats(alias) {
                         +' </tr>'
                     );
                 });
+
             }
         });
+}
+
+
+function updateStatsUser(userId) {
+    console.log("called statsUser with userId " + userId);
+    $.ajax({
+        url: "http://localhost:8760/stats?userId=" + userId,
+        success: function (statsResponse) {
+            console.log("statsResponse ===> ", JSON.stringify(statsResponse));
+            $('#stats-div').show();
+            $(".stats-body").empty();
+            if (statsResponse != null)
+                $('.stats-body').append('<tr> ' +
+                    '<td> ' + statsResponse.userId + '</td>' +
+                    '<td> ' + statsResponse.score + '</td>' +
+                    '<td> ' + statsResponse.badges.join() + '</td>'
+                    + '</tr>');
+        },
+        error: function (statsResponse) {
+            console.log("Error statsResponse ===> ", JSON.stringify(statsResponse));
+            $('#stats-div').show();
+            $(".stats-body").empty();
+            $('.stats-body').append('<tr> ' +
+                '<td> ' + statsResponse.userId + '</td>' +
+                '<td> ' + statsResponse.score + '</td>' +
+                '<td> ' + statsResponse.badges.join() + '</td>'
+                + '</tr>');
+        }
+    })
+}
+
+
+function updateLeaderBoard() {
+    $.ajax({
+        url: "http://localhost:8760/leaders"
+    }).then(function (leadersBoardResponse) {
+        console.log("leaderBoardResponse ===> " + JSON.stringify(leadersBoardResponse));
+        $('#leaders-body').empty();
+        let leaderBoardRows = leadersBoardResponse.leaderBoardRows;
+        console.log("leaderBoardRows === " + JSON.stringify(leaderBoardRows));
+         leaderBoardRows.forEach(function (row) {
+                if (row != null) {
+                    $('#leaders-body').append('<tr>' +
+                        '<td> ' + row.userId + '</td>' +
+                        '<td> ' + row.totalScore + '</td>' +
+                        '</tr>');
+                }
+            });
+    })
 }
